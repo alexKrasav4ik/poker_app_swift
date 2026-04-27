@@ -4,8 +4,6 @@ struct StatisticsView: View {
     @EnvironmentObject private var authViewModel: AuthViewModel
     @EnvironmentObject private var gameStore: GameStore
 
-    private let amountFormatter: FloatingPointFormatStyle<Double>.Currency = .currency(code: "RUB")
-
     var body: some View {
         NavigationStack {
             List {
@@ -75,6 +73,11 @@ struct StatisticsView: View {
     }
 
     private func formatAmount(_ value: Double) -> String {
-        value.formatted(amountFormatter)
+        let number = value.formatted(
+            .number
+                .precision(.fractionLength(0...2))
+                .grouping(.automatic)
+        )
+        return "\(number) у.е."
     }
 }
