@@ -12,6 +12,11 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Статистика", systemImage: "chart.bar.doc.horizontal")
                 }
+
+            SettlementsView()
+                .tabItem {
+                    Label("Расчёты", systemImage: "arrow.left.arrow.right.circle")
+                }
         }
     }
 }

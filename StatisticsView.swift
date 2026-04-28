@@ -42,7 +42,7 @@ struct StatisticsView: View {
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(session.date.formatted(date: .abbreviated, time: .shortened))
                                         .font(.subheadline.weight(.semibold))
-                                    Text("\(session.rows.count) игроков")
+                                    Text("\(session.rows.count) игроков · \(session.isSettled ? "рассчитано" : "нет расчёта")")
                                         .font(.caption)
                                         .foregroundStyle(.secondary)
                                 }
@@ -73,11 +73,6 @@ struct StatisticsView: View {
     }
 
     private func formatAmount(_ value: Double) -> String {
-        let number = value.formatted(
-            .number
-                .precision(.fractionLength(0...2))
-                .grouping(.automatic)
-        )
-        return "\(number) у.е."
+        UEFormat.string(for: value)
     }
 }
